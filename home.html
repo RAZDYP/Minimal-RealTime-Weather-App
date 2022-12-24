@@ -1,0 +1,111 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+    <script src="https://kit.fontawesome.com/6c0f35acb6.js" crossorigin="anonymous"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="d-flex align-items-center justify-content-center h-100"
+        style="background-image: linear-gradient(to right, #f2d6de, #eeaccf, #da85cf, #b264d9, #6551e9);">
+        <div class="card w-25 h-50 p-3" style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25); ">
+
+            <div class="rounded">
+                <div class="mt-5 d-flex flex-column align-items-center justify-content-center">
+                    <h2> <i class="fa-solid fa-street-view fa-2x"></i> {%location%},{%country%}</h2>
+                    <h6 class="opacity-75" id="date">WED|OCT 24|10.47</h6>
+                </div>
+                <div class="mt-5 d-flex flex-column align-items-center justify-content-center">
+                    <h2>{%tempval%}&deg;C
+                    </h2>
+                    <h6 class="opacity-75">Min {%tempmin%}&deg;C | Max : {%tempmax%}&deg;C </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const curDate = document.getElementById("date");
+        let weatherIcon = document.getElementById("weather-icon");
+
+        const tempStatus = "Clouds";
+        const getCurrenDay = () => {
+            let weekday = new Array(7);
+            weekday[0] = "SUN";
+            weekday[1] = "MON";
+            weekday[2] = "TUE";
+            weekday[3] = "WED";
+            weekday[4] = "THU";
+            weekday[5] = "FRI";
+            weekday[6] = "SAT";
+
+            let currentTime = new Date();
+            let day = weekday[currentTime.getDay()];
+            // console.log(day);
+            return day;
+        };
+        getCurrenDay();
+        const getCuurentTime = () => {
+            var months = [
+                "JAN",
+                "FEB",
+                "MAR",
+                "APR",
+                "MAY",
+                "JUN",
+                "JUL",
+                "AUG",
+                "SEP",
+                "OCT",
+                "NOV",
+                "DEC"
+            ]
+
+            var now = new Date();
+            let month = months[now.getMonth()];
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let period = "AM";
+
+            if (hours == 0) {
+                hours = 12;
+            }
+            if (hours > 12) {
+                hours = hours - 12;
+                period = "PM";
+            }
+            console.log(hours);
+            console.log(minutes);
+            console.log(period);
+            console.log(month);
+            return `${hours}:${minutes} ${period} | ${month} `;
+        };
+        curDate.innerHTML = `${getCurrenDay()} | ${getCuurentTime()}`;
+    </script>
+</body>
+
+</html>
